@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow: hidden;
+}
+
+#canvas {
+	border: 1px solid black;
+}
+</style>
+
+</head>
+
+<body>
+
+<canvas id="canvas" width="800" height="200"></canvas>
+
+<script src="js/core.js"></script>
+<script src="js/qcanvas.js"></script>
+
+<script>
+"use strict";
+
+var startAngle = 0,
+	angleVel = 0.23;
+
+
+function setup(q) {
+
+}
+
+function update(q) {
+	startAngle += 0.015;
+}
+
+function draw(q) {
+	q.clear();
+
+	var angle = startAngle;
+
+	q.context.lineWidth = '2';
+	q.context.strokeStyle = 'black';
+	q.context.fillStyle = 'rgba(0, 0, 0, 0.3)';
+
+	for(var x = 0; x < q.width; x += 24) {
+		var y = core.map(Math.sin(angle), -1, 1, 0, q.height);
+		// var y = core.map(Math.cos(angle), -1, 1, 0, q.height);
+		// var y = core.map(core.noise(angle, 0, 0), -1, 1, 0, q.height);
+
+		q.context.beginPath();
+		q.context.arc(x, y, 24, 0, 2*Math.PI, false);
+		q.context.stroke();
+		q.context.fill();
+
+		angle += angleVel;
+	}
+
+}
+
+window.onload = function() {
+	var q = new qCanvas('canvas',
+		{
+			width: 800,
+			height: 200,
+
+			setup: setup,
+			update: update,
+			draw: draw,
+
+			animate: true
+		});
+
+	q.start();
+};
+
+</script>
+
+</body>
+</html>

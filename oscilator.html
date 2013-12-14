@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow: hidden;
+}
+
+#canvas {
+	border: 1px solid black;
+}
+</style>
+
+</head>
+
+<body>
+
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<!-- <script src="js/core.js"></script>-->
+<script src="js/qcanvas.js"></script>
+
+<script>
+"use strict";
+
+var	amplitude = 300,
+	angle = 0,
+	aVel = 0.08;
+
+function setup(q) {
+	q.size(640, 480);
+	q.clearColor = 'rgba(255, 255, 255, 0.5)'
+}
+
+function update(q) {
+
+}
+
+function draw(q) {
+	q.clear();
+
+	var x = amplitude * Math.cos(angle);
+
+	angle += aVel;
+
+	q.context.save();
+	q.context.translate(q.width/2, q.height/2);
+	q.context.beginPath();
+	q.context.strokeStyle = 'black';
+	q.context.fillStyle = 'lightgray';
+	q.context.moveTo(0, 0);
+	q.context.lineTo(x, 0);
+	q.context.arc(0, 0, 4, 0, 2*Math.PI, false);
+	q.context.arc(x, 0, 20, 0, 2*Math.PI, false);
+	q.context.stroke();
+	q.context.fill();
+	q.context.restore();
+}
+
+window.onload = function() {
+	var q = new qCanvas('canvas',
+		{
+			width: 640,
+			height: 480,
+
+			animate: true,
+
+			setup: setup,
+			update: update,
+			draw: draw
+		});
+
+	q.start();
+};
+
+</script>
+
+</body>
+</html>

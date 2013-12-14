@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>qCanvas Events!</title>
+</head>
+<style>
+
+#canvas {
+  border: thin solid black;
+}
+
+</style>
+<script src="qcanvas.js"></script>
+<body>
+<h1>qCanvas Events!</h1>
+<a href="">by Sami ur Rahman Qazi</a><br/><br/>
+<canvas id="canvas" width="300" height="300"></canvas>
+<br/>
+Demo: Try mousing around, clicking, dragging and typing on your keyboard.<br/>
+<br/>
+
+<script>
+
+window.onload = function() {
+  var g = new qCanvas('canvas',
+    {
+      width: 300,
+      height: 300,
+      mouseMove: function(g) {
+        console.log("mouseMove: ", [g.mouse.x, g.mouse.y]);
+      },
+      mouseDown: function(g) {
+        console.log("mouseDown: ", [g.mouse.x, g.mouse.y]);
+      },
+      keyDown: function(g) {
+        console.log("keyDown: ", [g.keyCode]);
+      }
+    });
+  console.log(g.width);
+};
+
+</script>
+
+</body>
+</html>

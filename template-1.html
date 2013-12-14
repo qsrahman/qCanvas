@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow: hidden;
+}
+
+#canvas {
+	border: 1px solid black;
+}
+</style>
+
+</head>
+
+<body>
+
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<!-- <script src="js/core.js"></script>-->
+<script src="js/qcanvas.js"></script>
+
+<script>
+"use strict";
+
+
+function setup(q) {
+	q.size(800, 600);
+}
+
+function update(q) {
+
+}
+
+function draw(q) {
+	q.clear();
+
+}
+
+window.onload = function() {
+	var q = new qCanvas('canvas',
+		{
+			width: 640,
+			height: 480,
+
+			setup: setup,
+			update: update,
+			draw: draw,
+
+			animate: true
+		});
+
+	q.start();
+};
+
+</script>
+
+</body>
+</html>
