@@ -188,16 +188,16 @@ function qCanvas(canvasid, config) {
 		_resizeCanvas();
 
 		var now = new Date().getTime(),
-			dt = (now - then);
+			dt = (now - then) * (me.FPS / 1000);
 
-		if(dt > interval) {
-			then = now - (dt % interval);
+		//if(dt > interval) {
+			then = now; // - (dt % interval);
 
 			if(me.update)
 				me.update(me, dt);
 
 			if (me.draw)
 				me.draw(me, dt);
-		}
+		//}
 	}
 }
