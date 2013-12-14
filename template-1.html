@@ -26,7 +26,7 @@ body {
 
 <canvas id="canvas" width="640" height="480"></canvas>
 
-<!-- <script src="js/core.js"></script>-->
+<script src="js/core.js"></script>
 <script src="js/qcanvas.js"></script>
 
 <script>
@@ -37,11 +37,11 @@ function setup(q) {
 	q.size(800, 600);
 }
 
-function update(q) {
+function update(q, dt) {
 
 }
 
-function draw(q) {
+function draw(q, dt) {
 	q.clear();
 
 }
@@ -56,6 +56,7 @@ window.onload = function() {
 			update: update,
 			draw: draw,
 
+			FPS: 60,
 			animate: true
 		});
 

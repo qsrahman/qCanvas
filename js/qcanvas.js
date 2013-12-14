@@ -25,6 +25,7 @@ function qCanvas(canvasid, config) {
 	this.keyDown = config.keyDown;
 	this.keyPress = config.keyPress;
 
+	this.FPS = config.FPS || 60;
 	this.animate = config.animate || false;
 
 	this.clearColor = null;
@@ -34,9 +35,9 @@ function qCanvas(canvasid, config) {
 
 	this.mouse = {x: 0, y: 0, px: 0, py: 0};
 
-	this.keyCode = 0;
 	this.key = 0;
 	this.keys = {};
+	this.keyCode = 0;
 
 	this.canvas = document.getElementById(canvasid || 'canvas');
 	this.context = this.ctx = this.canvas.getContext('2d');
@@ -176,17 +177,27 @@ function qCanvas(canvasid, config) {
 		_update();
 	};
 
+	var then = new Date().getTime(),
+		interval = 1000 / me.FPS;
+
 	function _update() {
-		_resizeCanvas();
-
-		if(me.update)
-			me.update(me);
-
-		if (me.draw)
-			me.draw(me);
-
 		if (me.animate) {
 			requestAnimationFrame(_update, me.canvas);
+		}
+
+		_resizeCanvas();
+
+		var now = new Date().getTime(),
+			dt = (now - then);
+
+		if(dt > interval) {
+			then = now - (dt % interval);
+
+			if(me.update)
+				me.update(me, dt);
+
+			if (me.draw)
+				me.draw(me, dt);
 		}
 	}
 }

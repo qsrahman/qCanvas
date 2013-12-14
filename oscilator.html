@@ -38,14 +38,15 @@ var	amplitude = 300,
 
 function setup(q) {
 	q.size(640, 480);
+	q.FPS = 30;
 	q.clearColor = 'rgba(255, 255, 255, 0.5)'
 }
 
-function update(q) {
+function update(q, dt) {
 
 }
 
-function draw(q) {
+function draw(q, dt) {
 	q.clear();
 
 	var x = amplitude * Math.cos(angle);
