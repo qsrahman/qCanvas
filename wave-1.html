@@ -75,8 +75,9 @@ function draw(q) {
 }
 
 window.onload = function() {
-	var q = new qCanvas('canvas',
+	var q = new qCanvas(
 		{
+			canvasid: 'canvas',
 			width: 640,
 			height: 480,
 
@@ -86,8 +87,6 @@ window.onload = function() {
 
 			animate: true
 		});
-
-	q.start();
 };
 
 </script>

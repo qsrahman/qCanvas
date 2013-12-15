@@ -23,8 +23,9 @@ Demo: Try mousing around, clicking, dragging and typing on your keyboard.<br/>
 <script>
 
 window.onload = function() {
-  var g = new qCanvas('canvas',
+  var g = new qCanvas(
     {
+      canvasid: 'canvas',
       width: 300,
       height: 300,
       mouseMove: function(g) {
@@ -37,7 +38,6 @@ window.onload = function() {
         console.log("keyDown: ", [g.keyCode]);
       }
     });
-  console.log(g.width);
 };
 
 </script>
