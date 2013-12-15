@@ -29,7 +29,7 @@ function qCanvas(config) {
 	this.isDown = false;
 	this.fullscreen = config.fullscreen || false;
 
-	this.mouse = {x: 0, y: 0, px: 0, py: 0};
+	this.mouse = {x: 0, y: 0, px: 0, py: 0, event: null};
 
 	this.deltaX	= 0;
 	this.deltaY	= 0;
@@ -88,7 +88,6 @@ function qCanvas(config) {
 	};
 
 	this.createCanvas = function(w, h) {
-
 		if (arguments.length !== 2) {
 			w = this.width;
 			h = this.height;
@@ -113,6 +112,8 @@ function qCanvas(config) {
 
 		me.mouse.x = e.clientX - r.left;
 		me.mouse.y = e.clientY - r.top;
+
+		me.mouse.event = e;
 	}
 
 	function _mouseMove(e) {
