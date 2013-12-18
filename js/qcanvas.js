@@ -31,9 +31,6 @@ function qCanvas(config) {
 
 	this.mouse = {x: 0, y: 0, px: 0, py: 0, event: null};
 
-	this.deltaX	= 0;
-	this.deltaY	= 0;
-
 	this.key = 0;
 	this.keys = {};
 	this.keyCode = 0;
@@ -71,35 +68,16 @@ function qCanvas(config) {
 		return this;
 	};
 
-	this.line = function(x1, y1, x2, y2, color, lwidth) {
-		var ctx = this.ctx,
-			l = arguments.length;
-
-		ctx.beginPath();
-		ctx.moveTo(x1, y1);
-		ctx.lineTo(x2, y2);
-
-		if (l > 4) ctx.strokeStyle = color;
-		if (l > 5) ctx.lineWidth = lwidth;
-
-		ctx.stroke();
-
-		return this;
-	};
-
 	this.createCanvas = function(w, h) {
-		if (arguments.length !== 2) {
-			w = this.width;
-			h = this.height;
-		}
+		w = w || this.width;
+		h = h || this.height;
 
-		var c = document.createElement('canvas'),
-			x;
+		var c = document.createElement('canvas');
 
 		c.width = w;
 		c.height = h;
 
-		x = c.getContext('2d');
+		var x = c.getContext('2d');
 
 		return {canvas: c, ctx: x, context: x, width: w, height: h, centerX: w * 0.5, centerY: h * 0.5};
 	}
