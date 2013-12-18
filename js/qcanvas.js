@@ -6,9 +6,6 @@ function qCanvas(config) {
 	this.canvas = null;
 	this.context = null;
 
-	this.width = config.width || 640;
-	this.height = config.height || 480;
-
 	this.setup = config.setup;
 	this.update = config.update;
 	this.draw = config.draw;
@@ -24,16 +21,14 @@ function qCanvas(config) {
 	this.fps = config.fps || 60;
 	this.animate = config.animate || false;
 
-	this.clearColor = null;
-
-	this.isDown = false;
 	this.fullscreen = config.fullscreen || false;
-
-	this.mouse = {x: 0, y: 0, px: 0, py: 0, event: null};
 
 	this.key = 0;
 	this.keys = {};
 	this.keyCode = 0;
+	this.isDown = false;
+	this.clearColor = null;
+	this.mouse = {x: 0, y: 0, px: 0, py: 0, event: null};
 
 	this.clear = function() {
 		var ctx = this.ctx;
@@ -59,8 +54,8 @@ function qCanvas(config) {
 			throw 'Illegal numbers for width or height.';
 
 		try {
-			this.width = this.canvas.width = parseInt(w, '10');
-			this.height = this.canvas.height = parseInt(h, '10');
+			this.canvas.width = parseInt(w, '10');
+			this.canvas.height = parseInt(h, '10');
 		} catch(err) {
 			console.error(err);
 		}
@@ -69,8 +64,8 @@ function qCanvas(config) {
 	};
 
 	this.createCanvas = function(w, h) {
-		w = w || this.width;
-		h = h || this.height;
+		w = w || this.canvas.width;
+		h = h || this.canvas.height;
 
 		var c = document.createElement('canvas');
 
@@ -149,10 +144,10 @@ function qCanvas(config) {
 				h = window.innerHeight;
 
 			if (me.canvas.width !== w)
-				me.width = me.canvas.width = w;
+				me.canvas.width = w;
 
 			if (me.canvas.height !== h)
-				me.height = me.canvas.height = h;
+				me.canvas.height = h;
 		}
 	}
 
@@ -167,7 +162,7 @@ function qCanvas(config) {
 			if (me.draw) me.draw(me, dt);
 		}
 
-		then = now; // - (dt % interval);
+		then = now;
 		requestAnimationFrame(_update, me.canvas);
 	}
 
@@ -180,13 +175,9 @@ function qCanvas(config) {
 
 		this.size(window.innerWidth, window.innerHeight);
 	}
-	else {
-		this.canvas.width = this.width;
-		this.canvas.height = this.height;
-	}
 
-	this.canvas.addEventListener('mouseup', _mouseUp, false);
-	this.canvas.addEventListener('mousemove', _mouseMove, false);
+	window.addEventListener('mouseup', _mouseUp, false);
+	window.addEventListener('mousemove', _mouseMove, false);
 	this.canvas.addEventListener('mousedown', _mouseDown, false);
 
 	document.addEventListener('keyup', _keyUp, false);
