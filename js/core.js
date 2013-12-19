@@ -38,9 +38,9 @@ window.core.captureMouse = function(element) {
 
 // return a random color like "#FFFFFF"
 window.core.randomColor = function() {
-  var hexR = Math.floor(Math.random()*256).toString(16),
-      hexG = Math.floor(Math.random()*256).toString(16),
-      hexB = Math.floor(Math.random()*256).toString(16);
+  var hexR = ~~(Math.random()*256).toString(16),
+      hexG = ~~(Math.random()*256).toString(16),
+      hexB = ~~(Math.random()*256).toString(16);
 
   // making sure single character values are prepended with a "0"
   if (hexR.length == 1) {
@@ -129,12 +129,20 @@ window.core.map = function (value, inputMin, inputMax, outputMin, outputMax) {
 
 // Returns a random number between min and max
 window.core.random = function (min, max) {
+  if(max == null) {
+    max = min;
+    min = 0;
+  }
   return Math.random() * (max - min) + min;
 };
 
 // Returns a random integer between min and max
 // Using Math.round() will give you a non-uniform distribution!
 window.core.randomInt = function (min, max) {
+  if(max == null) {
+    max = min;
+    min = 0;
+  }
   //return Math.floor(Math.random() * (max - min + 1)) + min;
   return ~~(Math.random() * (max - min + 1)) + min;
 };
@@ -171,17 +179,18 @@ window.core.ceil = function (n) {
      p[256+i] = p[i] = permutation[i];
 
    function noise(x, y, z) {
-      var X = Math.floor(x) & 255,
-          Y = Math.floor(y) & 255,
-          Z = Math.floor(z) & 255;
-      x -= Math.floor(x);
-      y -= Math.floor(y);
-      z -= Math.floor(z);
+      var X = ~~(x) & 255,
+          Y = ~~(y) & 255,
+          Z = ~~(z) & 255;
+
+      x -= ~~(x);
+      y -= ~~(y);
+      z -= ~~(z);
 
       var u = fade(x),
           v = fade(y),
-          w = fade(z);
-      var A = p[X  ]+Y, AA = p[A]+Z, AB = p[A+1]+Z,
+          w = fade(z),
+          A = p[X  ]+Y, AA = p[A]+Z, AB = p[A+1]+Z,
           B = p[X+1]+Y, BA = p[B]+Z, BB = p[B+1]+Z;
 
       return lerp(w, lerp(v, lerp(u, grad(p[AA  ], x  , y  , z   ),
@@ -209,5 +218,5 @@ window.core.ceil = function (n) {
       return ((h&1) == 0 ? u : -u) + ((h&2) == 0 ? v : -v);
    }
 
-   window.core.noise = noise;
+   core.noise = noise;
 })();
