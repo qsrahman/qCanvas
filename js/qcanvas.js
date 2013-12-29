@@ -4,7 +4,7 @@ function qCanvas(config) {
 	var me = this;
 
 	this.canvas = null;
-	this.context = null;
+	// this.context = null;
 
 	this.setup = config.setup;
 	this.update = config.update;
@@ -156,6 +156,7 @@ function qCanvas(config) {
 	function _update() {
 		var now = new Date().getTime(),
 			dt = (now - then) * (me.fps / 1000);
+			// dt = (now - then) * 0.001;
 
 		if(me.animate) {
 			if(me.update) me.update(me, dt);
@@ -186,12 +187,10 @@ function qCanvas(config) {
 
 	window.addEventListener('resize', _resize, false);
 
-	(function() {
-		if(me.setup) {
-			me.setup(me);
-		}
+	if(this.setup) {
+		this.setup(this);
+	}
 
-		then = new Date().getTime();
-		_update();
-	})();
+	then = new Date().getTime();
+	_update();
 }

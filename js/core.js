@@ -38,9 +38,9 @@ window.core.captureMouse = function(element) {
 
 // return a random color like "#FFFFFF"
 window.core.randomColor = function() {
-  var hexR = ~~(Math.random()*256).toString(16),
-      hexG = ~~(Math.random()*256).toString(16),
-      hexB = ~~(Math.random()*256).toString(16);
+  var hexR = (~~(Math.random()*256)).toString(16),
+      hexG = (~~(Math.random()*256)).toString(16),
+      hexB = (~~(Math.random()*256)).toString(16);
 
   // making sure single character values are prepended with a "0"
   if (hexR.length == 1) {
@@ -166,6 +166,11 @@ window.core.ceil = function (n) {
     return t === n ? n : (n > 0) ? (t + 1) : (t - 1)
 };
 
+// A new and improved version of the typeOf operator
+window.core.toType = function(obj) {
+  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+};
+
 // This is a direct translation to javascript from the reference
 // Java implementation of the improved perlin function
 // (see http://mrl.nyu.edu/~perlin/noise/)
@@ -218,5 +223,5 @@ window.core.ceil = function (n) {
       return ((h&1) == 0 ? u : -u) + ((h&2) == 0 ? v : -v);
    }
 
-   core.noise = noise;
+   window.core.noise = noise;
 })();
