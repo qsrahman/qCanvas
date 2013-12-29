@@ -53,10 +53,10 @@ function draw(q) {
 	q.context.strokeStyle = 'black';
 	q.context.fillStyle = 'rgba(0, 0, 0, 0.3)';
 
-	for(var x = 0; x < q.width; x += 24) {
-		var y = core.map(Math.sin(angle), -1, 1, 0, q.height);
-		// var y = core.map(Math.cos(angle), -1, 1, 0, q.height);
-		// var y = core.map(core.noise(angle, 0, 0), -1, 1, 0, q.height);
+	for(var x = 0; x < q.canvas.width; x += 24) {
+		var y = core.map(Math.sin(angle), -1, 1, 0, q.canvas.height);
+		// var y = core.map(Math.cos(angle), -1, 1, 0, q.canvas.height);
+		// var y = core.map(core.noise(angle, 0, 0), -1, 1, 0, q.canvas.height);
 
 		q.context.beginPath();
 		q.context.arc(x, y, 24, 0, 2*Math.PI, false);
@@ -72,8 +72,6 @@ window.onload = function() {
 	var q = new qCanvas(
 		{
 			canvasid: 'canvas',
-			width: 800,
-			height: 200,
 
 			setup: setup,
 			update: update,

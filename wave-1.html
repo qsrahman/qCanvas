@@ -43,7 +43,7 @@ var xspacing = 16, 		// How far apart should each horizontal location be spaced
 	yvalues; 			// Using an array to store height values for the wave
 
 function setup(q) {
-	w = q.width + 16;
+	w = q.canvas.width + 16;
 	dx = ((2 * Math.PI) / period) * xspacing;
 
 	yvalues = new Array(w / xspacing);
@@ -67,7 +67,7 @@ function draw(q) {
 	// A simple way to draw the wave with an ellipse at each location
 	for(var x = 0; x < yvalues.length; x++) {
 		q.context.beginPath();
-		q.context.arc(x * xspacing, yvalues[x] + q.height/2, 8, 0, 2*Math.PI, false);
+		q.context.arc(x * xspacing, yvalues[x] + q.canvas.height/2, 8, 0, 2*Math.PI, false);
 		q.context.fillStyle = '#fff';
 		q.context.fill();
 	}
@@ -78,8 +78,6 @@ window.onload = function() {
 	var q = new qCanvas(
 		{
 			canvasid: 'canvas',
-			width: 640,
-			height: 480,
 
 			setup: setup,
 			update: update,

@@ -38,7 +38,6 @@ var	amplitude = 300,
 
 function setup(q) {
 	q.size(640, 480);
-	q.FPS = 30;
 	q.clearColor = 'rgba(255, 255, 255, 0.5)'
 }
 
@@ -54,7 +53,7 @@ function draw(q, dt) {
 	angle += aVel;
 
 	q.context.save();
-	q.context.translate(q.width/2, q.height/2);
+	q.context.translate(q.canvas.width/2, q.canvas.height/2);
 	q.context.beginPath();
 	q.context.strokeStyle = 'black';
 	q.context.fillStyle = 'lightgray';
@@ -71,8 +70,6 @@ window.onload = function() {
 	var q = new qCanvas(
 		{
 			canvasid: 'canvas',
-			width: 640,
-			height: 480,
 
 			animate: true,
 
