@@ -32,32 +32,22 @@ body {
 <script>
 "use strict";
 
-
 function setup(q) {
 	q.size(800, 600);
 }
 
 function update(q, dt) {
-
-}
-
-function draw(q, dt) {
 	q.clear();
-
 }
 
 window.onload = function() {
 	var q = new qCanvas(
 		{
 			cancasid: 'canvas',
-			width: 640,
-			height: 480,
 
 			setup: setup,
 			update: update,
-			draw: draw,
 
-			fps: 60,
 			animate: true
 		});
 };

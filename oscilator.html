@@ -42,10 +42,6 @@ function setup(q) {
 }
 
 function update(q, dt) {
-
-}
-
-function draw(q, dt) {
 	q.clear();
 
 	var x = amplitude * Math.cos(angle);
@@ -74,8 +70,7 @@ window.onload = function() {
 			animate: true,
 
 			setup: setup,
-			update: update,
-			draw: draw
+			update: update
 		});
 };
 

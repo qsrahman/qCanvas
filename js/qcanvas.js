@@ -8,7 +8,7 @@ function qCanvas(config) {
 
 	this.setup = config.setup;
 	this.update = config.update;
-	this.draw = config.draw;
+	// this.draw = config.draw;
 
 	this.mouseUp = config.mouseUp;
 	this.mouseDown = config.mouseDown;
@@ -160,7 +160,7 @@ function qCanvas(config) {
 
 		if(me.animate) {
 			if(me.update) me.update(me, dt);
-			if (me.draw) me.draw(me, dt);
+			// if (me.draw) me.draw(me, dt);
 		}
 
 		then = now;

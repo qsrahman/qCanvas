@@ -41,11 +41,9 @@ function setup(q) {
 }
 
 function update(q) {
-	startAngle += 0.015;
-}
-
-function draw(q) {
 	q.clear();
+
+	startAngle += 0.015;
 
 	var angle = startAngle;
 
@@ -75,7 +73,6 @@ window.onload = function() {
 
 			setup: setup,
 			update: update,
-			draw: draw,
 
 			animate: true
 		});
